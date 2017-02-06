@@ -1,0 +1,26 @@
+body {
+  text-align: center;
+}
+
+.boxes {
+  height: 150px;
+  width: 150px;
+  border: 2px black solid;
+  display: inline-block;
+}
+
+#red {
+  background-color: red;
+}
+
+#blue {
+  background-color: blue;
+}
+
+#yellow {
+  background-color: yellow;
+}
+
+#green {
+  background-color: green;
+}
