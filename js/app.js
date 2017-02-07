@@ -8,44 +8,56 @@ var compArray = []
 
 var userArray = []
 
-var computerChoice = boxes[Math.floor(Math.random() * boxes.length)]
-console.log(computerChoice)
+var computerChoice
 
+var round = 1
+
+function  compMove (){
+  for(var i = 0; i < round; i++){
+    computerChoice = boxes[Math.floor(Math.random() * boxes.length)]
+    console.log(computerChoice)
+  }
+  round++
+}
 ////////// FUNCTIONS //////////
-function changeOpacity(){
-  $(`#${computerChoice}`).css({opacity: 0.5})
+function changeOpacity(choice){
+  $(`#${choice}`).css({opacity: 0.5})
   setTimeout(function(){
-    $(`#${computerChoice}`).css({opacity: 1})
+    $(`#${choice}`).css({opacity: 1})
   }, 1000)
 }
 
-// function userOpacity(){
-//   $(this).css({opacity: 0.5})
-//   setTimeout(function(){
-//     $(this).css({opacity: 1})
-//   }, 1000)
-//   console.log('Clicked!')
-// }
+function checkWin(){
+  if(compArray.toString() === userArray.toString()){
+    console.log('User wins!')
+  } else {
+    console.log('loser!')
+  }
+  compMove()
+}
 
-////check user vs computer////
-// function checkPattern(){
-//   for(var i = 0; i < userArray.length; i++){
-//     if(userArray[i] !== compArray[i]){
-//       alert('Please try again')
-//     }
-//   }
-// }
 
 
 ////////// ACTIONS //////////
+
+////////// START BUTTON INITIATES GAME //////////
 $('#startButton').click(function(){
-  setTimeout(changeOpacity, 1000)
+  compMove()
+  setTimeout(function(){changeOpacity(computerChoice)}, 1000)
   compArray.push(computerChoice)
   console.log(compArray)
+
 })
 
-$(`#${computerChoice}`).click(function(){
-  changeOpacity()
+
+
+////////// CAPTURE USER CLICKS ON ANY DIV INTO USERARRAY //////////
+
+$('.boxes').click(function(){
   userArray.push($(this).attr('id'))
+  changeOpacity(userArray[userArray.length -1])
+  if(userArray.length === compArray.length){
+    checkWin()
+  }
   console.log(userArray)
 })
