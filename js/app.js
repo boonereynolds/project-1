@@ -17,6 +17,7 @@ function compMove (){
   for(var i = 0; i < round; i++){
     computerChoice = boxes[Math.floor(Math.random() * boxes.length)]
     console.log(computerChoice)
+    compArray.push(computerChoice)
   }
   round++
 }
@@ -32,7 +33,7 @@ function checkWin(){
   if(compArray.toString() === userArray.toString()){
     console.log('correct')
   } else {
-    // console.log('loser!')
+    console.log('loser!')
   }
   compMove()
   for(var i = 0; i < round; i++){
@@ -47,9 +48,7 @@ function checkWin(){
 $('#startButton').click(function(){
   compMove()
   setTimeout(function(){changeOpacity(computerChoice)}, 1000)
-  compArray.push(computerChoice)
   console.log(compArray)
-
 })
 
 ////////// CAPTURE USER CLICKS ON ANY DIV INTO USERARRAY //////////
