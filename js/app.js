@@ -14,10 +14,8 @@ var round = 1
 
 ////////// FUNCTIONS //////////
 function compMove() {
-  // for (var i = 0; i < round; i++) {
     computerChoice = boxes[Math.floor(Math.random() * boxes.length)]
     compArray.push(computerChoice)
-  // }
   round +=1
   console.log(compArray)
 }
@@ -37,6 +35,7 @@ function changeOpacity(choice) {
 function checkWin() {
   if (compArray.toString() === userArray.toString()) {
     console.log('correct')
+    $('#counter').text(userArray.length)
   } else {
     console.log('loser!')
   }
@@ -51,25 +50,9 @@ function checkWin() {
       clearInterval(sequence)
     }
   }, 1000)
-
-  // for(var i = 0; i < compArray.length; i++){
-    //   (function(i) {
-    //     setTimeout(function() {
-    //         changeOpacity(compArray[i])
-    //       }, 1000)
-    //     console.log(i)
-    //   })(i)
-    // }
     userArray = []
   }
 
-//   for (var i = 0; i < compArray.length; i++) {
-//     setTimeout(function() {
-//       changeOpacity(compArray)
-//     }, 1000)
-//   }
-//   userArray = []
-// }
 
 ////////// ACTIONS //////////
 
