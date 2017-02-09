@@ -29,9 +29,11 @@ function compMove() {
 }
 
 function changeOpacity(choice) {
+  var audio = $(`#${choice}Sound`)[0]
   $(`#${choice}`).css({
     opacity: 0.5
   })
+  audio.play()
   setTimeout(function() {
     $(`#${choice}`).css({
       opacity: 1
