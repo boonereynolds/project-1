@@ -13,6 +13,14 @@ var computerChoice
 var round = 1
 
 ////////// FUNCTIONS //////////
+function resetGame(){
+  $('.boxes').off('click')
+  $('#counter').text('0')
+  compArray = []
+  userArray = []
+}
+
+
 function compMove() {
   computerChoice = boxes[Math.floor(Math.random() * boxes.length)]
   compArray.push(computerChoice)
@@ -71,4 +79,8 @@ $('#startButton').click(function start() {
     }
     console.log(userArray)
   })
+})
+
+$('#resetButton').click(function(){
+  resetGame()
 })
