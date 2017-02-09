@@ -14,9 +14,9 @@ var round = 1
 
 ////////// FUNCTIONS //////////
 function compMove() {
-    computerChoice = boxes[Math.floor(Math.random() * boxes.length)]
-    compArray.push(computerChoice)
-  round +=1
+  computerChoice = boxes[Math.floor(Math.random() * boxes.length)]
+  compArray.push(computerChoice)
+  round += 1
   console.log(compArray)
 }
 
@@ -31,47 +31,44 @@ function changeOpacity(choice) {
   }, 1000)
 }
 
-
 function checkWin() {
   if (compArray.toString() === userArray.toString()) {
     console.log('correct')
     $('#counter').text(userArray.length)
   } else {
     console.log('loser!')
+
   }
   compMove()
 
   var i = 0
-  var sequence = setInterval(function(){
+
+  var sequence = setInterval(function() {
     var currentSquare = compArray[i]
-    setTimeout(changeOpacity(currentSquare), 1000)
+    setTimeout(changeOpacity(currentSquare), 500)
     i++
-    if(i === compArray.length){
+    if (i === compArray.length) {
       clearInterval(sequence)
     }
-  }, 1000)
-    userArray = []
-  }
+  }, 2000)
+  userArray = []
+}
 
 
 ////////// ACTIONS //////////
-
 ////////// START BUTTON INITIATES GAME //////////
-$('#startButton').click(function() {
+$('#startButton').click(function start() {
   compMove()
   setTimeout(function() {
     changeOpacity(computerChoice)
   }, 1000)
-  // console.log(compArray)
-})
-
-////////// CAPTURE USER CLICKS ON ANY DIV INTO USERARRAY //////////
-
-$('.boxes').click(function() {
-  userArray.push($(this).attr('id'))
-  changeOpacity(userArray[userArray.length - 1])
-  if (userArray.length === compArray.length) {
-    checkWin()
-  }
-  console.log(userArray)
+  ////////// CAPTURE USER CLICKS ON ANY DIV INTO USERARRAY //////////
+  $('.boxes').click(function() {
+    userArray.push($(this).attr('id'))
+    changeOpacity(userArray[userArray.length - 1])
+    if (userArray.length === compArray.length) {
+      checkWin()
+    }
+    console.log(userArray)
+  })
 })
