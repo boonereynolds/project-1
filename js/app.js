@@ -13,13 +13,17 @@ var computerChoice
 var round = 1
 
 ////////// FUNCTIONS //////////
-function resetGame(){
+function winGame(){
+    alert ('You win!')
+    resetGame()
+}
+
+function resetGame() {
   $('.boxes').off('click')
   $('#counter').text('0')
   compArray = []
   userArray = []
 }
-
 
 function compMove() {
   computerChoice = boxes[Math.floor(Math.random() * boxes.length)]
@@ -41,28 +45,34 @@ function changeOpacity(choice) {
   }, 1000)
 }
 
-function checkWin() {
+function checkMove() {
+  // var audioLose = $('#lose')[0]
   if (compArray.toString() === userArray.toString()) {
     console.log('correct')
     $('#counter').text(userArray.length)
+    compMove()
+    var i = 0
+    var sequence = setInterval(function() {
+      var currentSquare = compArray[i]
+      setTimeout(changeOpacity(currentSquare), 500)
+      i++
+      if (i === compArray.length) {
+        clearInterval(sequence)
+      }
+    }, 2000)
   } else {
-    console.log('loser!')
+    setTimeout(function() {
+      // audioLose.play()
+      alert('You lose!')
+      resetGame()
+    }, 1500)
 
+  } if (userArray.length === 5){
+    winGame()
   }
-  compMove()
-
-  var i = 0
-
-  var sequence = setInterval(function() {
-    var currentSquare = compArray[i]
-    setTimeout(changeOpacity(currentSquare), 500)
-    i++
-    if (i === compArray.length) {
-      clearInterval(sequence)
-    }
-  }, 2000)
   userArray = []
 }
+
 
 
 ////////// ACTIONS //////////
@@ -77,12 +87,12 @@ $('#startButton').click(function start() {
     userArray.push($(this).attr('id'))
     changeOpacity(userArray[userArray.length - 1])
     if (userArray.length === compArray.length) {
-      checkWin()
+      checkMove()
     }
     console.log(userArray)
   })
 })
 
-$('#resetButton').click(function(){
+$('#resetButton').click(function() {
   resetGame()
 })
