@@ -10,10 +10,10 @@ This project will use CSS to style the web page and jQuery to manipulate the HTM
 <a href = "https://trello.com/b/GDVDD281/wdi-sm-43-project-1" target = "_blank">Trello</a>
 
 ###Technologies Used
-	*HTML
-	*CSS
-	*JavaScript
-	*jQuery
+  * HTML
+  * CSS
+  * JavaScript
+  * jQuery
 
 ###Wireframe:
-![lofi_wireframe] (/Users/boonereynolds/code/swag/02_week/project_1/assets/lofi_wireframe.jpg)
+![lofi_wireframe](assets/lofi_wireframe.jpg)
